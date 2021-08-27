@@ -1,0 +1,14 @@
+.menu-logo {
+  @include center;
+
+  .logo-container{
+    padding: 1.5rem;
+    @include center;
+  
+    img {
+      width: 9rem;
+      height: auto;
+      cursor: pointer;
+    }
+  }
+}
