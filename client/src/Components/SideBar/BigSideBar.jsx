@@ -13,44 +13,45 @@ import ReportHistory from './Report history/ReportHistory'
 import Help from './Help/Help'
 import Feedback from './Feedback/SendFeedback'
 import ReactTooltip from 'react-tooltip'
+import { useContext } from 'react'
+import SideBarContext from '../../Contexts/sideBar/SideBarContext'
 
 
 const BigSideBar = () => {
+  const {isToggle} = useContext(SideBarContext)
+
   return (
-      <>
-        <div className='big_sidebar'>
-          <div className="side_bar_section">
-            <Home />
-            <Explore />
-            <Subscriptions />
-          </div>
-          <div className="side_bar_section">
-            <Library />
-            <History />
-            <WatchLater />
-            <LikedVideos />
-          </div>
-          <div className="side_bar_section">
-            <SubscriptionsSection />
-          </div>
-          <div className="side_bar_section">
-            <MoreSection />
-          </div>
-          <div className="side_bar_section">
-            <Settings />
-            <ReportHistory />
-            <Help />
-            <Feedback />
-          </div>
-          <ReactTooltip  effect='solid' id='sidebar' place='bottom' backgroundColor='black' delayShow={300} arrowColor='transparent' offset={{top: 0, left: 0}} className='tooltip'/>
-          <div className="side_bar_section footer">
-            Cloned by Lucas Ferrari
-          </div>
+    <aside className='big_sidebar'>
+      <div className='big_sidebar_container'>
+        <div className="sidebar_section">
+          <Home />
+          <Explore />
+          <Subscriptions />
         </div>
-        <div className='plus-grid-side'>
-        
+        <div className="sidebar_section">
+          <Library />
+          <History />
+          <WatchLater />
+          <LikedVideos />
         </div>
-      </>
+        <div className="sidebar_section">
+          <SubscriptionsSection />
+        </div>
+        <div className="sidebar_section">
+          <MoreSection />
+        </div>
+        <div className="sidebar_section">
+          <Settings />
+          <ReportHistory />
+          <Help />
+          <Feedback />
+        </div>
+        <ReactTooltip  effect='solid' id='sidebar' place='bottom' backgroundColor='black' delayShow={300} arrowColor='transparent' offset={{top: 0, left: 0}} className='tooltip'/>
+        <div className="sidebar_section footer">
+          Cloned by Lucas Ferrari
+        </div>
+      </div>
+    </aside>
   )
 }
 

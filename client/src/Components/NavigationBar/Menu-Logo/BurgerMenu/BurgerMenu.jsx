@@ -4,8 +4,9 @@ import SideBarContext from '../../../../Contexts/sideBar/SideBarContext'
 
 const BurgerMenu = () => {
   const {handleToggleSideBar} = useContext(SideBarContext)
+  
   return (
-    <button className='icon-container' onClick={handleToggleSideBar}>
+    <button className='icon-container burgerMenu' onClick={handleToggleSideBar}>
       <Menu size={25} />
     </button>
   )

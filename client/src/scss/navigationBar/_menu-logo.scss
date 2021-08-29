@@ -1,6 +1,11 @@
 .menu-logo {
   @include center;
 
+  .burgerMenu {
+    padding: .9rem;
+    // margin-right: .5rem;
+  }
+
   .logo-container{
     padding: 1.5rem;
     @include center;

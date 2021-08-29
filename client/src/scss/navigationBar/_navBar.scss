@@ -1,7 +1,8 @@
 .Navbar {
+  grid-area: nav;
   width: 100vw;
   height: 56px;
-  padding: 0 1.75rem;
+  padding: 0 1.5rem;
   background-color: $bg-nav-color;
   display: flex;
   justify-content: space-between;
@@ -9,7 +10,6 @@
   border-bottom: 1px solid rgba(90, 90, 90, 0.55);
   position: fixed;
   top: 0;
-  z-index: 999;
 
   .icon-container {
       padding: .5rem;

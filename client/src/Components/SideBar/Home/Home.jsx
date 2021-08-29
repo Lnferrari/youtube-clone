@@ -7,7 +7,7 @@ import { AiFillHome } from 'react-icons/ai'
 const Home = () => {
 
   return (
-    <NavLink to='/' activeClassName='active' data-for='sidebar' data-tip='Home'>
+    <NavLink to='/' exact activeClassName='active' data-for='sidebar' data-tip='Home'>
       <div className='sidebar_icon_container'>
         <AiFillHome size={23} className='sidebar_icon' />
         <h4 className='sidebar_text'>Home</h4>
