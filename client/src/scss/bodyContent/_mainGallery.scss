@@ -1,0 +1,82 @@
+.mainGallery {
+  width: 100%;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-rows: repeat(auto-fill);
+  // gap: .5rem;
+
+  .videoCard {
+    // width: fit-content;
+    padding: .5rem;
+    border: 1px solid white;
+    // @include center;
+    color: white;
+    font-size: 12px;
+    letter-spacing: .5px;
+
+    a {
+      width: 100%;
+      text-decoration: none;
+      color: inherit;
+
+      .video_preview {
+        width: 100%;
+        // height: 60%;
+
+        img {
+          max-width: 100%;
+          height: 100%;
+        }
+      }
+
+      .video_info_container {
+        padding: .5rem 0;
+        display: flex;
+        
+
+        .avatar_container {
+          width: fit-content;
+          grid-area: avatar;
+
+          .avatar {
+            width: 35px;
+            height: 35px;
+            margin-right: .8rem;
+            border-radius: 50%;
+          }
+        }
+
+        .video_text_container {
+          padding-right: 1.5rem;
+
+          h3 {
+            margin: .5rem 0;
+            line-height: 130%;
+          }
+
+          .video_info {
+
+
+            a {
+
+              .channelName {
+              
+              }
+            }
+
+            .video_metadata {
+
+              .dot_separator {
+
+              }
+            }
+          }
+          .dots_container {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

@@ -43,11 +43,12 @@ body {
         "aside main";
 
         main {
+            width: 100%;
             grid-area: main;
-            padding: 0 3rem;
+            padding: 2rem;
 
             section {
-                padding: 0 1.5rem;
+                padding: 0 2rem;
             }
         }
     }

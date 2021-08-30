@@ -1,6 +1,7 @@
 import React from 'react';
 import SideBarState from './Contexts/sideBar/SideBarState'
-import YouTubeClone from './Components/Index'
+import SearchState from './Contexts/search/SearchState';
+import YouTubeClone from './Components/index'
 
 
 const App = () => {
@@ -8,9 +9,11 @@ const App = () => {
 
   return (
     <React.Fragment>
-      <SideBarState>
-        <YouTubeClone />
-      </SideBarState>
+      <SearchState>
+        <SideBarState>
+          <YouTubeClone />
+        </SideBarState>
+      </SearchState>
     </React.Fragment>
   );
 }

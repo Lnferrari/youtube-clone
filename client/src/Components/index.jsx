@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import SideBarContext from '../Contexts/sideBar/SideBarContext';
-import SideBarState from '../Contexts/sideBar/SideBarState';
 import NavigationBar from './NavigationBar/index';
 import SmallSideBar from './SideBar/SmallSideBar';
 import BigSideBar from './SideBar/BigSideBar';
+import BodyContent from './BodyContent/index'
 
 const Index = () => {
   const {isToggled} = useContext(SideBarContext)
+  
   return (
     <React.Fragment>
       <Router>
@@ -18,13 +19,7 @@ const Index = () => {
           : <SmallSideBar />
         }
         <Switch>
-          <main>
-            <Route />
-            <Route />
-            <Route />
-            <Route />
-            <Route />
-          </main>
+          <BodyContent />
         </Switch>
       </Router>
     </React.Fragment>
