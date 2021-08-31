@@ -13,20 +13,27 @@ const MainGallery = () => {
   const getMainVideos = async () => {
     try {
       if(!storedVideos){
-        const response = await axios(`${API_SEARCH}react&key=${API_KEY}`)
+        const response = await axios(`${API_SEARCH}techno&key=${API_KEY}`)
         const videosArray = await response.data.items
         console.log(videosArray)
         // setMainVideos(videosArray)
         // let channelsData = []
         for await (let video of videosArray){
-          const response = await axios(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet&part=statistics&part=contentDetails&id=${video.snippet.channelId}&key=${API_KEY}`)
-          console.log(response)
-          const result1 = response.data.items[0].snippet
-          const result2 = response.data.items[0].statistics
-          const channelInfo = Object.assign({}, {...result1, ...result2})
+          // get video Extra info
+          const videoResponse = await axios(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${video.id.videoId}&key=${API_KEY}`)
+          console.log(video.snippet);
+          Object.assign(video.snippet, {...videoResponse.data.items[0].snippet})
+          console.log(video.snippet);
+          video.extraInfo = Object.assign({}, videoResponse.data.items[0].tags, videoResponse.data.items[0].contentDetails, videoResponse.data.items[0].statistics, videoResponse.data.items[0].player)
+
+          // get channel info
+          const channelResponse = await axios(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet&part=statistics&part=contentDetails&id=${video.snippet.channelId}&key=${API_KEY}`)
+          // storing data fetched
+          const channelResultA = channelResponse.data.items[0].snippet
+          const channelResultB = channelResponse.data.items[0].statistics
+          const channelInfo = Object.assign({}, {...channelResultA, ...channelResultB})
           // channelsData.push(result)
           video.channelInfo = channelInfo
-          console.log(video.channelInfo)
         }
         setMainVideos(videosArray)
         localStorage.setItem('mainVideos', JSON.stringify(videosArray))
@@ -36,9 +43,9 @@ const MainGallery = () => {
     }
   }
 
-  // useEffect(() => {
-  //   getMainVideos()
-  // }, [])
+  useEffect(() => {
+    getMainVideos()
+  }, [])
 
   const mainGalleryVideos = mainVideos.map(video => (
     <VideoCard key={video.id.videoId} id={video.id.videoId} info={video.snippet} channelInfo={video.channelInfo} />
