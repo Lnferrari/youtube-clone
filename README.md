@@ -37,14 +37,19 @@
 ## About The Project
 
 <p>This project was built with the aim to challenge myself, to keep practicing and learning by doing.
+  
 It contains the same basic functions as the original site, such as searching for videos, playing them or adding them to the "watch later" list.</p>
 
 [![YouTube clone Screen Shot][product-screenshot]](https://example.com)
 
 ### Built With
 
-* [React](https://reactjs.org)
-* [SCSS](https://sass-lang.com)
+<a href="https://reactjs.org" target="_blank">
+  <img style="margin: auto;" src="https://raw.githubusercontent.com/sachinverma53121/sachinverma53121/master/icons/react.png" alt=react width="50" height="50"/>
+</a>
+<a href="https://sass-lang.com">
+  <img style="margin: auto;" src="https://raw.githubusercontent.com/sachinverma53121/sachinverma53121/master/icons/sass.png" alt=sass width="50" height="50"/>
+</a>
 
 
 
