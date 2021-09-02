@@ -138,4 +138,4 @@ Project Link: [https://github.com/Lnferrari/youtube-clone](https://github.com/Ln
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[product-screenshot]: /images/youtube-screenshot.png
+[product-screenshot]: ./images/youtube-screenshot.png
