@@ -1,5 +1,4 @@
 import React from 'react'
-import { ImInfo } from 'react-icons/im'
 import { Link } from 'react-router-dom'
 import formatNum from '../../../helpers/formatNum'
 import moment from 'moment'

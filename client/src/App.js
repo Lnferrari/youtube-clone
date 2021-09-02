@@ -5,7 +5,6 @@ import YouTubeClone from './Components/index'
 
 
 const App = () => {
-  // const {isToggled} = useContext(sideBarContext)
 
   return (
     <React.Fragment>

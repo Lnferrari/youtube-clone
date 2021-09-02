@@ -5,9 +5,7 @@ import VideoCard from '../VideoCard/VideoCard'
 
 const MainGallery = () => {
   const storedVideos = JSON.parse(localStorage.getItem('mainVideos'))
-  // const storedChannels = JSON.parse(localStorage.getItem('mainChannels'))
   const [mainVideos, setMainVideos] = useState(storedVideos || [])
-  // const [mainChannels, setMainChannels] = useState(storedChannels || [])
   const {API_SEARCH, API_KEY} = useContext(SearchContext)
 
   const getMainVideos = async () => {
@@ -16,8 +14,6 @@ const MainGallery = () => {
         const response = await axios(`${API_SEARCH}techno&key=${API_KEY}`)
         const videosArray = await response.data.items
         console.log(videosArray)
-        // setMainVideos(videosArray)
-        // let channelsData = []
         for await (let video of videosArray){
           // get video Extra info
           const videoResponse = await axios(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${video.id.videoId}&key=${API_KEY}`)
@@ -25,14 +21,12 @@ const MainGallery = () => {
           Object.assign(video.snippet, {...videoResponse.data.items[0].snippet})
           console.log(video.snippet);
           video.extraInfo = Object.assign({}, videoResponse.data.items[0].tags, videoResponse.data.items[0].contentDetails, videoResponse.data.items[0].statistics, videoResponse.data.items[0].player)
-
           // get channel info
           const channelResponse = await axios(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet&part=statistics&part=contentDetails&id=${video.snippet.channelId}&key=${API_KEY}`)
-          // storing data fetched
+          // storing fetched data
           const channelResultA = channelResponse.data.items[0].snippet
           const channelResultB = channelResponse.data.items[0].statistics
           const channelInfo = Object.assign({}, {...channelResultA, ...channelResultB})
-          // channelsData.push(result)
           video.channelInfo = channelInfo
         }
         setMainVideos(videosArray)

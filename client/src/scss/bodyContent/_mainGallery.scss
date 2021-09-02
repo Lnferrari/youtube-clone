@@ -3,14 +3,11 @@
   padding: 0 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  // grid-template-rows: repeat(auto-fill);
   gap: 1rem;
 
   .videoCard {
-    // width: fit-content;
     max-height: 360px;
     padding: 1rem;
-    // border: 1px solid white;
     color: white;
     font-size: 14px;
     letter-spacing: .2px;
@@ -88,7 +85,7 @@
           margin-top: 1.2rem;
         }
 
-        // tooltip
+        // tooltip styles
         #title,
         #avatar {
           background-color: rgba(24, 24, 24, 0.7);

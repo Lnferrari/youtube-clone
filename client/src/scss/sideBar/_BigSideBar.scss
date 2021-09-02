@@ -53,15 +53,12 @@
       padding: 2.5rem 0;
       padding-left: 4rem;
       border: none;
-      // text-align: center;
     }
 
     &::-webkit-scrollbar{
       width:  8px;
     }
     &::-webkit-scrollbar-track {
-      // margin-bottom: 2rem;   
-      // margin: 1rem;
       background: $bg-nav-color;
       -webkit-box-shadow: inset 0 0 200px $bg-nav-color;
     }
