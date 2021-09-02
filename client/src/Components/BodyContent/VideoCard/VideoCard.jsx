@@ -1,14 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import formatNum from '../../../helpers/formatNum'
+import formatViews from '../../../helpers/formatViews'
+import formatTimeVideo from '../../../helpers/formatTimeVideo'
 import moment from 'moment'
 import {BiDotsVerticalRounded as Dots} from 'react-icons/bi'
 import ReactTooltip from 'react-tooltip';
 
 
-const VideoCard = ({id, info, channelInfo}) => {
+const VideoCard = ({id, info, eInfo, channelInfo}) => {
 
-  const views = formatNum(channelInfo.videoCount)
+  const duration = formatTimeVideo(eInfo.duration)
+  const views = formatViews(eInfo.viewCount)
   const time = moment(info.publishedAt, "YYYYMMDD").fromNow()
 
   return (
@@ -16,6 +18,12 @@ const VideoCard = ({id, info, channelInfo}) => {
       <Link to={`/video/${id}`}>
         <div className='video_preview'>
           <img src={info.thumbnails.medium.url} alt={info.title} />
+          {
+            duration
+            ? <div className='video_duration'><span>{duration}</span></div>
+            : null
+          }
+          
         </div>
         <div className='video_info_container'>
           <div className='avatar_container'>

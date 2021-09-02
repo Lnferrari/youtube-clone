@@ -42,7 +42,7 @@ const MainGallery = () => {
   }, [])
 
   const mainGalleryVideos = mainVideos.map(video => (
-    <VideoCard key={video.id.videoId} id={video.id.videoId} info={video.snippet} channelInfo={video.channelInfo} />
+    <VideoCard key={video.id.videoId} id={video.id.videoId} info={video.snippet} eInfo={video.extraInfo} channelInfo={video.channelInfo} />
   ))
 
   return (

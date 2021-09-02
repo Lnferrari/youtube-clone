@@ -23,10 +23,21 @@
         height: 62%;
         overflow: hidden;
         object-position: bottom;
+        position: relative;
 
         img {
           width: 100%;
           height: auto;
+        }
+
+        .video_duration {
+          padding: 3px 4px;
+          background-color: rgba(0, 0, 0, 0.8);
+          position: absolute;
+          bottom: 2px;
+          right: 2px;
+          font-weight: 600;
+          @include center;
         }
       }
 
