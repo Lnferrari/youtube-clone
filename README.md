@@ -127,7 +127,7 @@ Contributions are what make the open source community such an amazing place to l
 
 Lucas Ferrari - [Linkedin][linkedin] - ln.ferrari@hotmail.com
 
-Project Link: [https://github.com/Lnferrari/youtube-clone][Youtube project]
+Project Link: [YouTube-Clone][Youtube project]
 
 
 
