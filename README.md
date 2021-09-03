@@ -143,3 +143,4 @@ Distributed under the MIT License.
 [issues]: https://github.com/Lnferrari/youtube-clone/issues
 [Youtube project]: https://github.com/Lnferrari/youtube-clone
 [linkedin]: https://www.linkedin.com/in/lucasferrari1/
+[Youtube project]: https://github.com/Lnferrari/youtube-clone
