@@ -39,7 +39,7 @@
 <p>This project was built with the aim to challenge myself, to keep practicing and learning by doing.
 It contains the same basic functions as the original site, such as searching for videos, playing them or adding them to the "watch later" list.</p>
 
-![YouTube clone Screen Shot](./assets/youtube-screenshot.png)
+![YouTube clone Screen Shot][main page]
 
 ### Built With
 
@@ -139,4 +139,4 @@ Project Link: [https://github.com/Lnferrari/youtube-clone](https://github.com/Ln
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-
+[main page]: ./assets/youtube-screenshot.png
