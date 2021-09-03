@@ -94,7 +94,7 @@ _For more examples, please refer to the [Documentation](https://documentation.co
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/Lnferrari/youtube-clone/issues) for a list of proposed features (and known issues).
+See the [open issues][issues] for a list of proposed features (and known issues).
 
 
 
@@ -111,22 +111,6 @@ Contributions are what make the open source community such an amazing place to l
 
 
 
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License.
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Lucas Ferrari - [Linkedin](https://twitter.com/your_username) - ln.ferrari@hotmail.com
-
-Project Link: [https://github.com/Lnferrari/youtube-clone](https://github.com/Lnferrari/youtube-clone)
-
-
-
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 * [React Router DOM](https://reactrouter.com/)
@@ -138,5 +122,24 @@ Project Link: [https://github.com/Lnferrari/youtube-clone](https://github.com/Ln
 
 
 
+<!-- CONTACT -->
+## Contact
+
+Lucas Ferrari - [Linkedin][linkedin] - ln.ferrari@hotmail.com
+
+Project Link: [https://github.com/Lnferrari/youtube-clone][Youtube project]
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License.
+
+
+
 <!-- MARKDOWN LINKS & IMAGES -->
 [main page]: ./assets/youtube-screenshot.png
+[issues]: https://github.com/Lnferrari/youtube-clone/issues
+[Youtube project]: https://github.com/Lnferrari/youtube-clone
+[linkedin]: https://www.linkedin.com/in/lucasferrari1/
