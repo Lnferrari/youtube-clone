@@ -55,7 +55,7 @@ It contains the same basic functions as the original site, such as searching for
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
@@ -75,7 +75,7 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    npm install
    ```
-4. Enter your API in `/client/.env`
+4. Enter your API in `.env`
    ```JS
    const REACT_APP_API_KEY = 'ENTER YOUR API';
    ```
