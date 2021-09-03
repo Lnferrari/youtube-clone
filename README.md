@@ -129,10 +129,11 @@ Project Link: [https://github.com/Lnferrari/youtube-clone](https://github.com/Ln
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* [axios](https://axios-http.com/)
 * [React Router DOM](https://reactrouter.com/)
+* [axios](https://axios-http.com/)
 * [React Tooltip](https://wwayne.github.io/react-tooltip/)
 * [React Icons](https://react-icons.github.io/react-icons/)
+* [Momentjs](https://momentjs.com/)
 * [GitHub Pages](https://pages.github.com)
 
 
