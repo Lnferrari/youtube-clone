@@ -1,0 +1,145 @@
+.videoPage {
+  width: 100%;
+  padding: 0 2rem 0 2rem;
+  color: white;
+  
+  .columns_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+
+    .column {
+      padding: .5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center
+    }
+
+    .column_1 {
+      width: fit-content;
+      padding-right: 1.5rem;
+      font-size: 14px;
+      
+      .youtube_player {
+        max-width: 1280px;
+        max-height: 720px;
+        
+      }
+
+      .videoplayer_info {
+        width: 100%;
+        padding: 1rem 0;
+
+        .video_main_info {
+          padding-bottom: 1rem;
+          border-bottom: 1px solid $bg-nav-color;
+
+          .tags {
+            display: flex;
+            color: blue;
+
+            .tag {
+              margin-right: .5rem;
+            }
+          }
+
+          h1 {
+            padding: 1rem 0;
+          }
+
+          .videoplayer_metadata {
+            padding: .5rem 0;
+            color: $subtext-color;
+          }
+        }
+      }
+    }
+
+    .column_2 {
+      
+      flex-basis: 420px;        
+
+        .videoCard {
+          width: 100%;
+          padding: 0 .5rem .5rem;
+          color: white;
+          font-size: 14px;
+          letter-spacing: .2px;
+      
+          a {
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+      
+            .video_preview {
+              width: 40%;
+              height: 100%;
+              position: relative;
+      
+              img {
+                width: 100%;
+                height: 100%;
+              }
+      
+              .video_duration {
+                padding: 3px 4px;
+                background-color: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+                font-weight: 600;
+                font-size: 90%;
+                @include center;
+              }
+            }
+      
+            .video_info_container {
+              width: 60%;
+              padding-left: 1rem;
+              font-size: 85%;
+              display: flex;
+              position: relative;
+      
+              .avatar_container {
+                display: none;
+              }
+      
+              .video_text_container {
+      
+                h3 {
+                  padding: 0 1rem 0 0;
+                  line-height: 150%;
+                }
+      
+                .video_info {
+                  color: $subtext-color;
+      
+                  a {
+      
+                    .channelName {
+                      line-height: 150%;
+      
+                      &:hover {
+                        color: $text-color;
+                      }
+                    }
+      
+                    #channel {
+                      background-color: rgba(90, 90, 90, 0.4);
+                    }
+                  }
+                }
+              }
+
+              .dots_container {
+                display: none;
+              }
+            }
+          }
+      }
+    }
+  }
+}

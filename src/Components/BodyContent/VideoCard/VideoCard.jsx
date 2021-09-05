@@ -8,7 +8,6 @@ import ReactTooltip from 'react-tooltip';
 
 
 const VideoCard = ({id, info, eInfo, channelInfo}) => {
-
   const duration = formatTimeVideo(eInfo.duration)
   const views = formatViews(eInfo.viewCount)
   const time = moment(info.publishedAt, "YYYYMMDD").fromNow()
@@ -40,7 +39,7 @@ const VideoCard = ({id, info, eInfo, channelInfo}) => {
                 </div>
                 <ReactTooltip  effect='solid' id='channel' place='top' delayShow={100} offset={{top: 0, left: 0}} arrowColor='transparent' className='tooltip'/>
               </Link>
-              <div className='vide_metadata'>
+              <div className='video_metadata'>
                 <span>{views} views</span>
                 <span className='dot_separator'> &#8226; </span>
                 <span>{time}</span>
