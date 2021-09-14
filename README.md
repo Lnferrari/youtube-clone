@@ -69,7 +69,7 @@ To get a local copy up and running follow these simple steps.
 1. Get a free API Key at [YouTube Data API](https://developers.google.com/youtube/v3/)
 2. Clone the repo
    ```sh
-   git clone https://github.com/Lnferrari/youtube-clone.git
+   git clone git@github.com:Lnferrari/youtube-clone.git
    ```
 3. Install NPM packages
    ```sh
