@@ -15,7 +15,7 @@ const MainGallery = () => {
         const videosArray = await response.data.items
         console.log(videosArray)
         for await (let video of videosArray){
-          // get video Extra info
+          // get extra video info
           const videoResponse = await axios(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${video.id.videoId}&key=${API_KEY}`)
           console.log(video.snippet);
           Object.assign(video.snippet, {...videoResponse.data.items[0].snippet})
