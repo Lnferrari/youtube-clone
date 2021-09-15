@@ -10,35 +10,38 @@
     flex-flow: row wrap;
 
     .column {
-      padding: .5rem;
+      padding-top: 1rem;
       display: flex;
       flex-direction: column;
       align-items: center
     }
 
     .column_1 {
-      width: fit-content;
-      padding-right: 1.5rem;
+      max-width: 1280px;
+      margin-right: 2rem;
       font-size: 14px;
       
       .youtube_player {
         max-width: 1280px;
         max-height: 720px;
-        
       }
 
       .videoplayer_info {
         width: 100%;
         padding: 1rem 0;
+        position: relative;
+        border-bottom: 1px solid rgba(90, 90, 90, 0.55);
 
         .video_main_info {
-          padding-bottom: 1rem;
-          border-bottom: 1px solid rgba(90, 90, 90, 0.55);
-          position: relative;
+          padding-bottom: .5rem;
 
           .tags {
+            width: 100%;
+            padding-top: .5rem;
             display: flex;
-            color: blue;
+            flex-flow: row wrap;
+            color: rgb(0, 153, 255);
+            font-size: 90%;
 
             .tag {
               margin-right: .5rem;
@@ -54,11 +57,37 @@
             color: $subtext-color;
           }
         }
+
+        .main_header_buttons {
+          width: fit-content;
+          @include center;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          font-weight: 300;
+          font-size: 105%;
+
+          div {
+            padding: 1.2rem;
+            @include center;
+
+            span {
+              margin-left: .5rem;
+              font-weight: 600
+            }
+
+          }
+
+          .likes_container {
+            margin-bottom: -1px;
+            padding: 0;
+            border-bottom: 2px solid white;
+          }
+        }
       }
     }
 
     .column_2 {
-      
       flex-basis: 420px;        
 
         .videoCard {
