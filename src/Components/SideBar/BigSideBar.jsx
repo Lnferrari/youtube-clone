@@ -13,12 +13,9 @@ import ReportHistory from './Report history/ReportHistory'
 import Help from './Help/Help'
 import Feedback from './Feedback/SendFeedback'
 import ReactTooltip from 'react-tooltip'
-import { useContext } from 'react'
-import SideBarContext from '../../Contexts/sideBar/SideBarContext'
 
 
 const BigSideBar = () => {
-  const {isToggle} = useContext(SideBarContext)
 
   return (
     <aside className='big_sidebar'>

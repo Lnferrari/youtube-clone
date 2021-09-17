@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import SideBarContext from '../../Contexts/sideBar/SideBarContext'
 import BigSideBar from './BigSideBar'
 import SmallSideBar from './SmallSideBar'
@@ -6,8 +6,13 @@ import { useLocation } from 'react-router'
 
 
 const Index = () => {
-  const { isToggled, seIsToggled } = useContext(SideBarContext)
+  const { isToggled, setIsToggled } = useContext(SideBarContext)
   const location = useLocation()
+
+  // useEffect(() => {
+  //   if (location.pathname.startsWith('/video'))
+  //     setIsToggled(false)
+  // }, [location])
 
   return (
     <>
@@ -15,7 +20,7 @@ const Index = () => {
       location.pathname.startsWith('/video/')
       ? (isToggled 
         ? <BigSideBar />
-        : <div className='separator'></div>
+        : null
       )
       : (isToggled 
         ? <BigSideBar />
