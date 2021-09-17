@@ -14,31 +14,37 @@ const VideoPage = () => {
   const { videoID } = useParams()
   const [relatedVideos, setRelatedVideos] = useState(JSON.parse(localStorage.getItem('mainVideos')) || [])
   const [currentVideo, setCurrentVideo ] = useState(
-    relatedVideos.find(item => item.id.videoId === videoID)
+    relatedVideos.find(item =>
+      item.id.videoId === videoID
+    )
   )
   const { setIsToggled } = useContext(SideBarContext)
-  console.log(currentVideo.extraInfo.viewCount)
 
   const videoViews = formatNumber(currentVideo.extraInfo.viewCount)
 
   const likes = formatViews(currentVideo.extraInfo.likeCount)
   const dislikes = formatViews(currentVideo.extraInfo.dislikeCount)
+  const subscribers = formatViews(currentVideo.channelInfo.subscriberCount)
 
   const opts = {
     height: '720',
     width: '1280'
   }
 
+  const formatText = text => {
+    const formatedText = text.split(' ').map(
+      x => x.startsWith('http') ?
+      <a href={x}>{x}</a> : <span> {x} </span>
+    )
+    return formatedText
+  }
+
   const onPlayerReady = e => {
     e.target.playVideo();
   }
 
-  useEffect(() => {
-    setIsToggled(false)
-  },[])
-
   const relatedVideosMarkUp = relatedVideos.map(video => (
-    <VideoCard key={video.id.videoId} id={video.id.videoId} info={video.snippet} eInfo={video.extraInfo} image={video.snippet.thumbnails.default.url} channelInfo={video.channelInfo} className='related_video' />
+    <VideoCard key={video.id.videoId} id={video.id.videoId} info={video.snippet} eInfo={video.extraInfo} image={video.snippet.thumbnails.default.url} channelInfo={video.channelInfo} />
   ))
 
 
@@ -60,13 +66,17 @@ const VideoPage = () => {
     </div>
   )
 
-  
+  useEffect(() => {
+    setIsToggled(false)
+  }, [])
 
   return (
     <section className='videoPage'>
       <div className="columns_container">
         <div className="column column_1">
-          <YouTube className='youtube_player' videoId={videoID} onPlay={onPlayerReady} opts={opts} autoplay />
+          <div className="youtube_player_container">
+            <YouTube className='youtube_player' videoId={videoID} onPlay={onPlayerReady} opts={opts} autoplay />
+          </div>
           <div className='videoplayer_info'>
             { videoHeaderMarkUp }
             <div className="main_header_buttons">
@@ -93,6 +103,27 @@ const VideoPage = () => {
                   className='sidebar_icon'
                 />
               </div>
+            </div>
+          </div>
+          <div className="channel_video_info">
+            <div className='channel_data'>
+              <div className='channel_avatar'>
+                <img src={currentVideo.channelInfo.thumbnails.default.url} alt="avatar" />
+              </div>
+              <div className='channel_title'>
+                <a href="/">
+                  {currentVideo.channelInfo.title}
+                </a>
+                <span>
+                  {subscribers} subscribers
+                </span>
+              </div>
+              <div className='channel_subscribe'>
+                <button>SUBSCRIBE</button>
+              </div>
+            </div>
+            <div className='video_description'>
+              {formatText(currentVideo.snippet.description)}
             </div>
           </div>
         </div>
