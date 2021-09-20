@@ -46,19 +46,20 @@
     background-color: $bg-color;
     border-radius: 50%;
   }
-
 }
 
 .smallSearch {
   flex-basis: 100%;
   justify-content: flex-end;
 
-  .searchIcon {
-
-  }
-
   .voiceIcon {
     background-color: transparent;
     margin-left: 1rem;
   }
 }
+
+// .searchbar_special {
+//   width: 100vw;
+//   flex-basis: 1000%;
+//   z-index: 99999;
+// }

@@ -1,17 +1,33 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import MenuLogo from './Menu-Logo/index'
 import SearchBar from './SearchBar/SearchBar'
 import ButtonsSection from './Buttons/ButtonsSection';
+import SearchContext from '../../Contexts/search/SearchContext';
+import useWindowSize from '../../helpers/useWindowSize';
 
-const index = () => {
+const Index = () => {
+  const {
+    specialSearchBarMarkUp,
+    showSpecialSearchBar,
+    showSearchBar,
+    hiddeSearchBar
+  } = useContext(SearchContext)
   
+  const { width } = useWindowSize
+
   return (
     <nav className='Navbar'>
-      <MenuLogo />
-      <SearchBar />
-      <ButtonsSection />
+      {
+        width < 640 && showSpecialSearchBar
+        ? specialSearchBarMarkUp
+        : <>
+          <MenuLogo />
+          <SearchBar />
+          <ButtonsSection />
+        </> 
+      }
     </nav>
   )
 }
 
-export default index
+export default Index
