@@ -1,7 +1,14 @@
 .buttons {
   @include center;
 
-  button {
+  button,
+  .avatar {
       margin: 0 1rem;
+  }
+
+  .avatar {
+    width: 25px;
+    border-radius: 50%;
+    cursor: pointer;
   }
 }
