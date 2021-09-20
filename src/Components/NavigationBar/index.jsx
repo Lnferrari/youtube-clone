@@ -4,6 +4,7 @@ import SearchBar from './SearchBar/SearchBar'
 import ButtonsSection from './Buttons/ButtonsSection';
 
 const index = () => {
+  
   return (
     <nav className='Navbar'>
       <MenuLogo />
