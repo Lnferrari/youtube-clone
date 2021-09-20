@@ -9,26 +9,44 @@ import { RiFlagLine, RiShareForwardLine as Share } from 'react-icons/ri'
 import { BiLike, BiDislike } from 'react-icons/bi'
 import { MdPlaylistAdd as Save } from 'react-icons/md'
 import formatViews from '../../../helpers/formatViews'
+import UserContext from '../../../Contexts/user/UserContext'
+import axios from 'axios'
+import faker from 'faker'
 
 const VideoPage = () => {
-  const { videoID } = useParams()
+  const { videoId } = useParams()
   const [relatedVideos, setRelatedVideos] = useState(JSON.parse(localStorage.getItem('mainVideos')) || [])
   const [currentVideo, setCurrentVideo ] = useState(
     relatedVideos.find(item =>
-      item.id.videoId === videoID
+      item.id.videoId === videoId
     )
   )
+  const [ videoComments, setVideoComments ] = useState([])
   const { setIsToggled } = useContext(SideBarContext)
-
-  const videoViews = formatNumber(currentVideo.extraInfo.viewCount)
-
-  const likes = formatViews(currentVideo.extraInfo.likeCount)
-  const dislikes = formatViews(currentVideo.extraInfo.dislikeCount)
-  const subscribers = formatViews(currentVideo.channelInfo.subscriberCount)
-
+  const { user,
+    likeVideo,
+    addToWatchLater,
+    subscribeToChannel
+  } = useContext(UserContext)
+  
   const opts = {
     height: '720',
     width: '1280'
+  }
+
+  const videoViews = formatNumber(currentVideo.extraInfo.viewCount)
+  const likes = formatViews(currentVideo.extraInfo.likeCount)
+  const dislikes = formatViews(currentVideo.extraInfo.dislikeCount)
+  const subscribers = formatViews(currentVideo.channelInfo.subscriberCount)
+  const comments = formatNumber(currentVideo.extraInfo.commentCount)
+
+  const getComments = async () => {
+    const response = await axios(
+      `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${videoId}&key=${process.env.REACT_APP_API_KEY}`
+    )
+    console.log(response)
+    const commentsApi = await response.data.items
+    setVideoComments(commentsApi)
   }
 
   const formatText = text => {
@@ -52,8 +70,8 @@ const VideoPage = () => {
     <div className='video_main_info'>
       <div className='tags'>
         {
-          currentVideo.snippet.tags.map(tag => (
-            <span className='tag'>#{tag}</span>
+          currentVideo.snippet.tags.map((tag, i) => (
+            <span className='tag' key={i}>#{tag}</span>
           ))
         }
       </div>
@@ -61,28 +79,72 @@ const VideoPage = () => {
       <div className='videoplayer_metadata'>
         <span>{videoViews} visualisations</span>
         <span className='dot_separator'> &#8226; </span>
-        <span>{moment(currentVideo.snippet.publishedAt).format('ll')}</span>
+        <span>
+          {moment(currentVideo.snippet.publishedAt).format('ll')}
+        </span>
       </div>
     </div>
   )
 
+  const videoCommentsMarkUp = videoComments.map(item => {
+    const { id, snippet } = item.snippet.topLevelComment
+    return (
+      <div className="comment_container" key={id}>
+        <div className="comment_avatar_container">
+          <img src={snippet.authorProfileImageUrl} alt="user avatar" />
+        </div>
+        <div className='comment_text_container'>
+          <div className="comment_author">
+            {snippet.authorDisplayName}
+            <span>
+              {moment(snippet.publishedAt, "YYYYMMDD").fromNow()}
+            </span>
+          </div>
+          <div className='comment_text'>
+            {snippet.textOriginal}
+          </div>
+          <div className='comment_buttons'>
+            <div>
+              <BiLike size={16}/>
+              <span className='muted'>
+                {faker.datatype.number(998)}
+              </span>
+            </div>
+            <div>
+              <BiDislike size={16}/>
+            </div>
+            <span className='muted'>REPLY</span>
+          </div>
+        </div>
+      </div>
+    )
+  })
+
   useEffect(() => {
     setIsToggled(false)
+    getComments()
   }, [])
+
+  useEffect(() => {
+    const video = relatedVideos.find(item =>
+      item.id.videoId === videoId
+    )
+    setCurrentVideo(video)
+  }, [videoId])
 
   return (
     <section className='videoPage'>
       <div className="columns_container">
         <div className="column column_1">
           <div className="youtube_player_container">
-            <YouTube className='youtube_player' videoId={videoID} onPlay={onPlayerReady} opts={opts} autoplay />
+            <YouTube className='youtube_player' videoId={videoId} onPlay={onPlayerReady} opts={opts} autoplay />
           </div>
           <div className='videoplayer_info'>
             { videoHeaderMarkUp }
             <div className="main_header_buttons">
               <div className='likes_container'>
                 <div className="likes">
-                  <BiLike size={25} />
+                  <BiLike size={25} onClick={() => likeVideo(videoId)} />
                   <span>{likes}</span>
                 </div>
                 <div className="dislikes">
@@ -95,7 +157,7 @@ const VideoPage = () => {
                 <span>SHARE</span>
               </div>
               <div className="save">
-                <Save size={25} />
+                <Save size={25} onClick={() => addToWatchLater(videoId)}/>
                 <span>SAVE</span>
               </div>
               <div className="report">
@@ -119,11 +181,30 @@ const VideoPage = () => {
                 </span>
               </div>
               <div className='channel_subscribe'>
-                <button>SUBSCRIBE</button>
+                <button
+                  onClick={()=>subscribeToChannel(
+                    currentVideo.snippet.channelId
+                  )}
+                  className={`${user?.subscriptions?.some(channel => channel === currentVideo.snippet.channelId) ? 'subscribed' : ''}`}
+                >
+                  {
+                    user?.subscriptions?.some(channel => channel === currentVideo.snippet.channelId)
+                    ? 'SUBSCRIBED'
+                    : 'SUBSCRIBE'
+                  }
+                </button>
               </div>
             </div>
             <div className='video_description'>
               {formatText(currentVideo.snippet.description)}
+            </div>
+          </div>
+          <div className="video_comments_container">
+            <div className='video_comments_count'>
+              {comments} Comments
+            </div>
+            <div className='video_comments'>
+              {videoCommentsMarkUp}
             </div>
           </div>
         </div>

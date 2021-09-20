@@ -15,9 +15,9 @@ const Index = () => {
       <Route exact path={`/results?search_query=${searchQuery.input}`}>
         <SearchedVideos />
       </Route>
-      <Route exact path='/video/:videoID' component={VideoPage} />
-      {/* <Route exact path='/channel/channelID' component={ChannelPage} /> */}
-      <Route exact path='/account' />
+      <Route exact path='/video/:videoId' component={VideoPage} />
+      {/* <Route exact path='/channel/channelId' component={ChannelPage} /> */}
+      {/* <Route exact path='/account' /> */}
     </main>
   )
 }

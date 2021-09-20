@@ -11,11 +11,25 @@ const UserState = ({children}) => {
   const localUser = JSON.parse(
     localStorage.getItem('userYoutubeClone')
   )
-  const [ user, setUser ] = useState(localStorage || initialUserState)
+  const [ user, setUser ] = useState(localUser || initialUserState)
 
   const likeVideo = videoId => {
-    const updatedUserLikes = user.likedVideos.concat(videoId)
-    setUser({ ...user, updatedUserLikes })
+    let updatedUserLikes = []
+    const alreadyLiked = user.likedVideos?.find(
+      video => video === videoId
+    )
+    if (alreadyLiked) {
+      updatedUserLikes = user.likedVideos.filter(
+        video => video !== videoId
+      )
+    } else {
+      updatedUserLikes = user.likedVideos?.concat(videoId)
+    }
+    setUser({
+      ...user,
+      likedVideos: updatedUserLikes
+    })
+    
     localStorage.setItem(
       'userYoutubeClone',
       JSON.stringify(user)
@@ -24,7 +38,11 @@ const UserState = ({children}) => {
 
   const addToWatchLater = videoId => {
     const updatedWatchLater = user.watchLater.concat(videoId)
-    setUser({ ...user, updatedWatchLater })
+    setUser({
+      ...user,
+      watchLater: updatedWatchLater
+    })
+
     localStorage.setItem(
       'userYoutubeClone',
       JSON.stringify(user)
@@ -32,8 +50,22 @@ const UserState = ({children}) => {
   }
 
   const subscribeToChannel = channelId => {
-    const updatedSubscriptions = user.subscriptions.concat(channelId)
-    setUser({ ...user, updatedSubscriptions })
+    let updatedSubscriptions = []
+    const alreadySubscribed = user.subscriptions?.find(
+      channel => channel === channelId
+    )
+    if (alreadySubscribed) {
+      updatedSubscriptions = user.subscriptions.filter(
+        channel => channel !== channelId
+      )
+    } else {
+      updatedSubscriptions = user.subscriptions?.concat(channelId)
+    }
+    setUser({
+      ...user,
+      subscriptions: updatedSubscriptions
+    })
+    
     localStorage.setItem(
       'userYoutubeClone',
       JSON.stringify(user)
