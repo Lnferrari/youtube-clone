@@ -14,7 +14,9 @@ const SideBarState = ({children}) => {
   }
 
   useEffect(() => {
-    if (width <= 1310) setIsToggled(false);
+    width <= 1310
+    ? setIsToggled(false)
+    : setIsToggled(true)
     // else if (location.pathname.startsWith('/video'))
     //   setIsToggled(false);
     // else setIsToggled(true);
