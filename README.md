@@ -141,6 +141,5 @@ Distributed under the MIT License.
 <!-- MARKDOWN LINKS & IMAGES -->
 [main page]: ./assets/youtube-screenshot.png
 [issues]: https://github.com/Lnferrari/youtube-clone/issues
-[Youtube project]: https://github.com/Lnferrari/youtube-clone
+[Youtube project]: https://lnferrari.github.io/youtube-clone/
 [linkedin]: https://www.linkedin.com/in/lucasferrari1/
-[Youtube project]: https://github.com/Lnferrari/youtube-clone
