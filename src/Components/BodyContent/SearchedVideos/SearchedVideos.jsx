@@ -12,6 +12,7 @@ const SearchVideos = () => {
       <VideoCard
         key={video.id.videoId}
         id={video.id.videoId}
+        img={video.snippet.thumbnails.medium.url}
         info={video.snippet}
         eInfo={video.extraInfo}
         channelInfo={video.channelInfo}

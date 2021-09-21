@@ -1,13 +1,11 @@
 .searchedVideos {
   width: 100%;
   padding: 0 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
   .videoCard {
-    max-width: 600px;
-    max-height: 360px;
+    max-width: 1000px;
+    height: 100%;
+    margin: 0 auto;
     padding: 1rem;
     color: white;
     font-size: 15px;
@@ -18,14 +16,18 @@
       height: 100%;
       text-decoration: none;
       color: inherit;
-      display: flex;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: 1fr;
+      gap: 2rem;
 
       .video_preview {
-        width: 100%;
+        max-width: 360px;
         height: 100%;
+        // margin-right: 2rem;
         // max-height: 62%;
         // overflow: hidden;
-        object-position: center;
+        // object-position: center;
         position: relative;
 
         img {
@@ -45,36 +47,42 @@
       }
 
       .video_info_container {
-        width: 100%;
+        width: fit-content;
         // height: 38%;
-        display: grid;
-        grid-template-columns: auto 1fr 15px;
+        display: flex;
+        flex-direction: column;
+        // grid-template-columns: auto 1fr 15px;
         
 
         .avatar_container {
           width: fit-content;
+          order: 2;
 
           .avatar {
             width: 35px;
             height: 35px;
-            margin: 1.2rem 1.2rem 0 0;
+            // margin: 1.2rem 1.2rem 0 0;
             border-radius: 50%;
           }
         }
 
         .video_text_container {
-          padding-right: 2rem;
+          width: 100%;
+          padding-right: 1rem;
 
           h3 {
-            margin: 1.2rem 0 .6rem 0;
+            margin: 0 0 .6rem 0;
             line-height: 150%;
           }
 
           .video_info {
             color: $subtext-color;
+            display: flex;
+            flex-direction: column;
 
             a {
-
+              order: 1;
+              margin: 1rem 0;
               .channelName {
                 line-height: 130%;
 
@@ -97,6 +105,7 @@
 
         .dots_container {
           margin-top: 1.2rem;
+          display: none;
         }
 
         // tooltip styles
