@@ -7,7 +7,7 @@ import {BiDotsVerticalRounded as Dots} from 'react-icons/bi'
 import ReactTooltip from 'react-tooltip';
 
 
-const VideoCard = ({id, info, eInfo, channelInfo}) => {
+const VideoCard = ({id, img, info, eInfo, channelInfo}) => {
   const duration = formatTimeVideo(eInfo.duration)
   const views = formatViews(eInfo.viewCount)
   const time = moment(info.publishedAt, "YYYYMMDD").fromNow()
@@ -16,7 +16,7 @@ const VideoCard = ({id, info, eInfo, channelInfo}) => {
     <div className='videoCard'>
       <Link to={`/video/${id}`}>
         <div className='video_preview'>
-          <img src={info.thumbnails.medium.url} alt={info.title} />
+          <img src={img} alt={info.title} />
           {
             duration
             ? <div className='video_duration'>
@@ -28,7 +28,7 @@ const VideoCard = ({id, info, eInfo, channelInfo}) => {
         </div>
         <div className='video_info_container'>
           <div className='avatar_container'>
-            <img src={channelInfo.thumbnails.default.url}
+            <img src={img}
               alt={`${info.channelTitle} avatar`}
               className='avatar'
               data-for='avatar'
