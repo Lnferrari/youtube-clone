@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { ImSearch as SearchIcon } from 'react-icons/im'
 import {MdKeyboardVoice as VoiceIcon} from 'react-icons/md'
 import { BiArrowBack } from 'react-icons/bi'
@@ -17,11 +17,12 @@ const Index = () => {
     API_SEARCH,
     API_KEY,
     showSpecialSearchBar,
+    setShowSpecialSearchBar,
     showSearchBar,
     hiddeSearchBar
   } = useContext(SearchContext)
   
-  const { width } = useWindowSize
+  const { width } = useWindowSize()
   let history = useHistory()
 
 
@@ -70,6 +71,10 @@ const Index = () => {
       </button>
     </div>
   )
+
+  useEffect(() => {
+    setShowSpecialSearchBar(false)
+  }, [width])
 
   return (
     <nav className='Navbar'>
