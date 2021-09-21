@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext} from 'react'
 import SearchContext from '../../../Contexts/search/SearchContext'
 import axios from 'axios'
+import getVideoInfo from '../../../helpers/getVideoInfo'
 import VideoCard from '../VideoCard/VideoCard'
 
 const MainGallery = () => {
@@ -12,29 +13,30 @@ const MainGallery = () => {
     try {
       if(!storedVideos){
         const response = await axios(`${API_SEARCH}techno&key=${API_KEY}`)
-        const videosArray = await response.data.items
-        for await (let video of videosArray){
-          // get extra video info
-          const videoResponse = await axios(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${video.id.videoId}&key=${API_KEY}`)
-          Object.assign(video.snippet, {...videoResponse.data.items[0].snippet})
-          video.extraInfo = Object.assign(
-            {},
-            videoResponse.data.items[0].tags,
-            videoResponse.data.items[0].contentDetails,
-            videoResponse.data.items[0].statistics,
-            videoResponse.data.items[0].player
-          )
-          // get channel info
-          const channelResponse = await axios(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet&part=statistics&part=contentDetails&id=${video.snippet.channelId}&key=${API_KEY}`)
-          // storing fetched data
-          const channelResultA = channelResponse.data.items[0].snippet
-          const channelResultB = channelResponse.data.items[0].statistics
-          const channelInfo = Object.assign(
-            {},
-            {...channelResultA, ...channelResultB}
-          )
-          video.channelInfo = channelInfo
-        }
+        let videosArray = await response.data.items
+        videosArray = await getVideoInfo(videosArray)
+        // for await (let video of videosArray){
+        //   // get extra video info
+        //   const videoResponse = await axios(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${video.id.videoId}&key=${API_KEY}`)
+        //   Object.assign(video.snippet, {...videoResponse.data.items[0].snippet})
+        //   video.extraInfo = Object.assign(
+        //     {},
+        //     videoResponse.data.items[0].tags,
+        //     videoResponse.data.items[0].contentDetails,
+        //     videoResponse.data.items[0].statistics,
+        //     videoResponse.data.items[0].player
+        //   )
+        //   // get channel info
+        //   const channelResponse = await axios(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet&part=statistics&part=contentDetails&id=${video.snippet.channelId}&key=${API_KEY}`)
+        //   // storing fetched data
+        //   const channelResultA = channelResponse.data.items[0].snippet
+        //   const channelResultB = channelResponse.data.items[0].statistics
+        //   const channelInfo = Object.assign(
+        //     {},
+        //     {...channelResultA, ...channelResultB}
+        //   )
+        //   video.channelInfo = channelInfo
+        // }
         setMainVideos(videosArray)
         localStorage.setItem('mainVideos', JSON.stringify(videosArray))
       }
