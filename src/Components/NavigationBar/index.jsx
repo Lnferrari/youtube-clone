@@ -1,4 +1,9 @@
 import React, { useContext } from 'react'
+import { ImSearch as SearchIcon } from 'react-icons/im'
+import {MdKeyboardVoice as VoiceIcon} from 'react-icons/md'
+import { BiArrowBack } from 'react-icons/bi'
+import axios from 'axios'
+import { Redirect, useHistory } from 'react-router-dom'
 import MenuLogo from './Menu-Logo/index'
 import SearchBar from './SearchBar/SearchBar'
 import ButtonsSection from './Buttons/ButtonsSection';
@@ -7,22 +12,73 @@ import useWindowSize from '../../helpers/useWindowSize';
 
 const Index = () => {
   const {
-    specialSearchBarMarkUp,
+    searchQuery,
+    setSearchQuery,
+    API_SEARCH,
+    API_KEY,
     showSpecialSearchBar,
     showSearchBar,
     hiddeSearchBar
   } = useContext(SearchContext)
   
   const { width } = useWindowSize
+  let history = useHistory()
+
+
+  const handleChange = e => {
+    setSearchQuery({
+        ...searchQuery,
+        input: e.target.value
+    });
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if(searchQuery.input !== ''){
+      console.log('searching...');
+      const response = await axios(`${API_SEARCH}${searchQuery.input}&key=${API_KEY}`)
+      const result = await response.data
+      setSearchQuery({
+          ...searchQuery,
+          videos: result.items
+      });
+      history.push(`/results/${searchQuery.input}`)
+      // <Redirect to={`/results/${searchQuery.input}`} />
+    }
+  }
+
+  // Search input field for small devices
+  const specialSearchBarMarkUp = (
+    <div className='special_searchbar'>
+      <button onClick={hiddeSearchBar}>
+        <BiArrowBack size={25} />
+      </button>
+      <form onSubmit={handleSubmit}>
+        <input type="text"
+          name='search'
+          value={searchQuery.input}
+          placeholder='Search'
+          onChange={handleChange}
+          autoComplete='false'
+        />
+        <button type='submit'>
+          <SearchIcon size={20} data-tip='Search' data-for='navbar' />
+        </button>
+      </form>
+      <button className='icon-container voiceIcon'>
+        <VoiceIcon size={25} data-tip='Search with your voice' data-for='navbar' />
+      </button>
+    </div>
+  )
 
   return (
     <nav className='Navbar'>
       {
-        width < 640 && showSpecialSearchBar
+        width <= 640 && showSpecialSearchBar
         ? specialSearchBarMarkUp
         : <>
           <MenuLogo />
-          <SearchBar />
+          <SearchBar onChange={handleChange} onSubmit={handleSubmit} />
           <ButtonsSection />
         </> 
       }

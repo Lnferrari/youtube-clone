@@ -6,19 +6,14 @@ import SearchContext from '../../../Contexts/search/SearchContext'
 import axios from 'axios'
 import useWindowSize from '../../../helpers/useWindowSize'
 
-const SearchBar = () => {
+const SearchBar = ({onChange, onSubmit}) => {
   
   const {
     searchQuery,
     setSearchQuery,
     API_SEARCH,
     API_KEY,
-    handleChange,
-    handleSubmit,
-    specialSearchBarMarkUp,
-    showSpecialSearchBar,
     showSearchBar,
-    hiddeSearchBar
   } = useContext(SearchContext)
   // const history = useHistory()
   const { width } = useWindowSize()
@@ -63,17 +58,16 @@ const SearchBar = () => {
   // }, [searchQuery.videos])
 
   return (
-    <div className={`SearchBar ${width <= 640 ? 'smallSearch' : ''} ${showSearchBar ? 'searchbar_special' : ''}`}>
+    <div className={`SearchBar ${width <= 640 ? 'smallSearch' : ''}`}>
       {
         width > 640
-        ? (<form onSubmit={handleSubmit}>
-            <input type="text" name='search' value={searchQuery.input} placeholder='Search' onChange={handleChange} autoComplete='false' />
+        ? (<form onSubmit={onSubmit}>
+            <input type="text" name='search' value={searchQuery.input} placeholder='Search' onChange={onChange} autoComplete='false' />
             <button type='submit'>
               <SearchIcon size={20} data-tip='Search' data-for='navbar' />
             </button>
           </form>)
         : <button
-            type='submit'
             className='icon-container searchIcon'
             onClick={showSearchBar}
           >
