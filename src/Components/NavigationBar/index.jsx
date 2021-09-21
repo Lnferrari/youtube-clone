@@ -3,7 +3,7 @@ import { ImSearch as SearchIcon } from 'react-icons/im'
 import {MdKeyboardVoice as VoiceIcon} from 'react-icons/md'
 import { BiArrowBack } from 'react-icons/bi'
 import axios from 'axios'
-import { Redirect, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import MenuLogo from './Menu-Logo/index'
 import SearchBar from './SearchBar/SearchBar'
 import ButtonsSection from './Buttons/ButtonsSection';
@@ -44,7 +44,6 @@ const Index = () => {
           videos: result.items
       });
       history.push(`/results/${searchQuery.input}`)
-      // <Redirect to={`/results/${searchQuery.input}`} />
     }
   }
 

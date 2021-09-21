@@ -19,25 +19,68 @@ const VideoCard = ({id, info, eInfo, channelInfo}) => {
           <img src={info.thumbnails.medium.url} alt={info.title} />
           {
             duration
-            ? <div className='video_duration'><span>{duration}</span></div>
+            ? <div className='video_duration'>
+                <span>{duration}</span>
+            </div>
             : null
           }
           
         </div>
         <div className='video_info_container'>
           <div className='avatar_container'>
-            <img src={channelInfo.thumbnails.default.url} alt={`${info.channelTitle} avatar`} className='avatar' data-for='avatar' data-tip={info.channelTitle} />
-            <ReactTooltip  effect='solid' id='avatar' place='bottom' delayShow={200} arrowColor='transparent' offset={{top: 0, left: 0}} className='tooltip'/>
+            <img src={channelInfo.thumbnails.default.url}
+              alt={`${info.channelTitle} avatar`}
+              className='avatar'
+              data-for='avatar'
+              data-tip={info.channelTitle}
+            />
+            <ReactTooltip
+              effect='solid'
+              id='avatar'
+              place='bottom'
+              delayShow={200}
+              arrowColor='transparent'
+              offset={{top: 0, left: 0}}
+              className='tooltip'
+            />
           </div>
           <div className='video_text_container'>
-            <h3 data-for='title' data-tip={info.title}>{info.title.length > 60 ? (info.title.substring(0, 60)+'...') : info.title}</h3>
-            <ReactTooltip  effect='solid' id='title' place='bottom' delayShow={200} arrowColor='transparent' offset={{top: 0, left: 0}} className='tooltip'/>
+            <h3
+              data-for='title'
+              data-tip={info.title}
+            >
+              {
+                info.title.length > 60
+                ? (info.title.substring(0, 60)+'...')
+                : info.title
+              }
+            </h3>
+            <ReactTooltip
+              effect='solid'
+              id='title'
+              place='bottom'
+              delayShow={200}
+              arrowColor='transparent'
+              offset={{top: 0, left: 0}}
+              className='tooltip'
+            />
             <div className='video_info'>
-              <Link to={`/channel/${channelInfo.customUrl}`} >
-                <div className='channelName' data-for='channel' data-tip={info.channelTitle}>
+              <Link to={`/channel/${channelInfo.customUrl}`}>
+                <div className='channelName'
+                  data-for='channel'
+                  data-tip={info.channelTitle}
+                >
                   {info.channelTitle}
                 </div>
-                <ReactTooltip  effect='solid' id='channel' place='top' delayShow={100} offset={{top: 0, left: 0}} arrowColor='transparent' className='tooltip'/>
+                <ReactTooltip
+                  effect='solid'
+                  id='channel'
+                  place='top'
+                  delayShow={100}
+                  offset={{top: 0, left: 0}}
+                  arrowColor='transparent'
+                  className='tooltip'
+                />
               </Link>
               <div className='video_metadata'>
                 <span>{views} views</span>

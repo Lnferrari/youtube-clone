@@ -43,7 +43,16 @@ const BigSideBar = () => {
           <Help />
           <Feedback />
         </div>
-        <ReactTooltip  effect='solid' id='sidebar' place='bottom' backgroundColor='black' delayShow={300} arrowColor='transparent' offset={{top: 0, left: 0}} className='tooltip'/>
+        <ReactTooltip
+          effect='solid'
+          id='sidebar'
+          place='bottom'
+          backgroundColor='black'
+          delayShow={300}
+          arrowColor='transparent'
+          offset={{top: 0, left: 0}}
+          className='tooltip'
+        />
         <div className="sidebar_section footer">
           Cloned by Lucas Ferrari
         </div>

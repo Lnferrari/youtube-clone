@@ -34,6 +34,8 @@ const VideoPage = () => {
     width: '1280'
   }
 
+  const API_KEY = process.env.REACT_APP_API_KEY
+
   const videoViews = formatNumber(currentVideo.extraInfo.viewCount)
   const likes = formatViews(currentVideo.extraInfo.likeCount)
   const dislikes = formatViews(currentVideo.extraInfo.dislikeCount)
@@ -42,7 +44,7 @@ const VideoPage = () => {
 
   const getComments = async () => {
     const response = await axios(
-      `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${videoId}&key=${process.env.REACT_APP_API_KEY}`
+      `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${videoId}&key=${API_KEY}`
     )
     console.log(response)
     const commentsApi = await response.data.items

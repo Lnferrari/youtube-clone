@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useContext } from 'react'
 import {ImSearch as SearchIcon} from 'react-icons/im'
 import {MdKeyboardVoice as VoiceIcon} from 'react-icons/md'
 import SearchContext from '../../../Contexts/search/SearchContext'
-import axios from 'axios'
 import useWindowSize from '../../../helpers/useWindowSize'
 
 const SearchBar = ({onChange, onSubmit}) => {
-  
   const {
     searchQuery,
     setSearchQuery,
@@ -15,47 +12,8 @@ const SearchBar = ({onChange, onSubmit}) => {
     API_KEY,
     showSearchBar,
   } = useContext(SearchContext)
-  // const history = useHistory()
+
   const { width } = useWindowSize()
-
-  // const handleChange = e => {
-  //   setSearchQuery({
-  //       ...searchQuery,
-  //       input: e.target.value
-  //   });
-  // }
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   const query = JSON.parse(localStorage.getItem(searchQuery.input))
-  //   if(searchQuery.input !== '' || !query){
-  //     console.log('searching...');
-  //     const response = await axios(`${API_SEARCH}${searchQuery.input}&key=${API_KEY}`)
-  //     console.log(response)
-  //     const result = await response.json()
-  //     console.log(result)
-  //     setSearchQuery({
-  //         ...searchQuery,
-  //         videos: result
-  //     })
-  //     history.push(`/results?search_query=${searchQuery.input}`)
-  //   }
-  //   if(query){
-  //     setSearchQuery({
-  //       ...searchQuery,
-  //       videos: query.videos
-  //     })
-  //     history.push(`/results?search_query=${searchQuery.input}`)
-  //   }
-  // }
-
-  // const handleShowSearchBar = () => {
-  //   setShowSpecialSearchBar(true)
-  // }
-
-  // useEffect(() => {
-  //   localStorage.setItem(searchQuery.input, JSON.stringify(searchQuery.videos))
-  // }, [searchQuery.videos])
 
   return (
     <div className={`SearchBar ${width <= 640 ? 'smallSearch' : ''}`}>

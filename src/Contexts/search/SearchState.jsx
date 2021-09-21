@@ -9,11 +9,8 @@ const SearchState = ({children}) => {
   })
   const [ showSpecialSearchBar, setShowSpecialSearchBar ] = useState(false)
 
-
   const API_KEY = process.env.REACT_APP_API_KEY
   const API_SEARCH = process.env.REACT_APP_API_SEARCH_URL
-
-  
 
   const showSearchBar = () => {
     setShowSpecialSearchBar(true)
