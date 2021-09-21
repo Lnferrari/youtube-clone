@@ -26,6 +26,7 @@
     width: 100%;
     padding: 0 .5rem;
     @include center;
+    z-index: 99999;
 
     button {
       padding: .5rem;
