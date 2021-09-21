@@ -11,11 +11,6 @@ const Index = () => {
   const location = useLocation()
   const { width } = useWindowSize()
 
-  // useEffect(() => {
-  //   if (location.pathname.startsWith('/video'))
-  //     setIsToggled(false)
-  // }, [location])
-
   return (
     <>
     {

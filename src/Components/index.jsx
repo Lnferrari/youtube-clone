@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import NavigationBar from './NavigationBar/index';
 import SideBar from './SideBar/index'
-import BodyContent from './BodyContent/index'
 import MainGallery from './BodyContent/MainGallery/MainGallery';
 import VideoPage from './BodyContent/VideoPage/VideoPage';
 import SearchedVideos from './BodyContent/SearchedVideos/SearchedVideos'
