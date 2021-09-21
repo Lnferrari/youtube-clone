@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import NavigationBar from './NavigationBar/index';
 import SideBar from './SideBar/index'
 import BodyContent from './BodyContent/index'
