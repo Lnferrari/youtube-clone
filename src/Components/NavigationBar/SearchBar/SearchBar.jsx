@@ -8,8 +8,6 @@ const SearchBar = ({onChange, onSubmit}) => {
   const {
     searchQuery,
     setSearchQuery,
-    API_SEARCH,
-    API_KEY,
     showSearchBar,
   } = useContext(SearchContext)
 

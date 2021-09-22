@@ -1,17 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react'
 import SearchContext from '../../../Contexts/search/SearchContext'
-import getVideoInfo from '../../../helpers/getVideoInfo'
+import SideBarContext from '../../../Contexts/sideBar/SideBarContext'
+import { getVideoInfo } from '../../../helpers/fetchingData'
 import VideoCard from '../VideoCard/VideoCard'
 
-const SearchVideos = () => {
+const SearchedVideos = () => {
   const [ searchedVideos, setSearchedVideos] = useState([])
   const { searchQuery } = useContext(SearchContext)
+  const { setIsToggled } = useContext(SideBarContext)
 
-  const searchedVideosMarkUp = searchedVideos.map(
+  const searchedVideosMarkUp = searchedVideos && searchedVideos.map(
     video => (
       <VideoCard
         key={video.id.videoId}
         id={video.id.videoId}
+        video={video}
         img={video.snippet.thumbnails.medium.url}
         info={video.snippet}
         eInfo={video.extraInfo}
@@ -23,6 +26,7 @@ const SearchVideos = () => {
   useEffect(async () => {
     const videos = await getVideoInfo(searchQuery.videos)
     setSearchedVideos(videos)
+    setIsToggled(true)
   }, [])
 
   return (
@@ -32,4 +36,4 @@ const SearchVideos = () => {
   )
 }
 
-export default SearchVideos
+export default SearchedVideos

@@ -1,34 +1,43 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import YouTube from 'react-youtube'
+import { getComments, getRelatedVideos } from '../../../helpers/fetchingData'
+import faker from 'faker'
+import moment from 'moment'
+import UserContext from '../../../Contexts/user/UserContext'
 import SideBarContext from '../../../Contexts/sideBar/SideBarContext'
 import VideoCard from '../VideoCard/VideoCard'
-import moment from 'moment'
-import formatNumber from '../../../helpers/formatNumber'
 import { RiFlagLine, RiShareForwardLine as Share } from 'react-icons/ri'
 import { BiLike, BiDislike } from 'react-icons/bi'
 import { MdPlaylistAdd as Save } from 'react-icons/md'
+import formatNumber from '../../../helpers/formatNumber'
 import formatViews from '../../../helpers/formatViews'
-import UserContext from '../../../Contexts/user/UserContext'
-import axios from 'axios'
-import faker from 'faker'
+import formatText from '../../../helpers/formatText'
 
-const VideoPage = () => {
+const VideoPage = ({ location }) => {
   const { videoId } = useParams()
-  const [relatedVideos, setRelatedVideos] = useState(JSON.parse(localStorage.getItem('mainVideos')) || [])
-  const [currentVideo, setCurrentVideo ] = useState(
-    relatedVideos.find(item =>
-      item.id.videoId === videoId
-    )
-  )
+  console.log('VIDEO ID => ', videoId);
+
+  const { state: currentVideo } = location
+
+  console.log('LOCATION', location);
+  
   const [ videoComments, setVideoComments ] = useState([])
+  const [relatedVideos, setRelatedVideos] = useState(JSON.parse(localStorage.getItem('mainVideos')) || [])
   const { setIsToggled } = useContext(SideBarContext)
+
   const { user,
     likeVideo,
     addToWatchLater,
     subscribeToChannel
   } = useContext(UserContext)
-  
+
+  // const [currentVideo, setCurrentVideo ] = useState({})
+  //   // relatedVideos.find(item =>
+  //   //   item.id.videoId === videoId
+  //   // )
+
+  // Variables
   const opts = {
     height: '720',
     width: '1280'
@@ -36,35 +45,45 @@ const VideoPage = () => {
 
   const API_KEY = process.env.REACT_APP_API_KEY
 
-  const videoViews = formatNumber(currentVideo.extraInfo.viewCount)
+  const views = formatNumber(currentVideo.extraInfo.viewCount)
   const likes = formatViews(currentVideo.extraInfo.likeCount)
   const dislikes = formatViews(currentVideo.extraInfo.dislikeCount)
   const subscribers = formatViews(currentVideo.channelInfo.subscriberCount)
+  const videoDescription = formatText(currentVideo.snippet.description)
   const comments = formatNumber(currentVideo.extraInfo.commentCount)
 
-  const getComments = async () => {
-    const response = await axios(
-      `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${videoId}&key=${API_KEY}`
-    )
-    console.log(response)
-    const commentsApi = await response.data.items
-    setVideoComments(commentsApi)
-  }
+  // const getRelatedVideos = async (videoId) => {
+  //   try {
+  //     const response = await axios(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&relatedToVideoId=${videoId}&type=video&key=${API_KEY}`)
+  //     const relatedVideosApi = await response.data.items
+  //     return relatedVideosApi
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
-  const formatText = text => {
-    const formatedText = text.split(' ').map(
-      x => x.startsWith('http') ?
-      <a href={x}>{x}</a> : <span> {x} </span>
-    )
-    return formatedText
-  }
+  // const getComments = async (videoId) => {
+  //   const response = await axios(
+  //     `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${videoId}&key=${API_KEY}`
+  //   )
+  //   const commentsApi = await response.data.items
+  //   return commentsApi
+  // }
 
   const onPlayerReady = e => {
     e.target.playVideo();
   }
 
   const relatedVideosMarkUp = relatedVideos.map(video => (
-    <VideoCard key={video.id.videoId} id={video.id.videoId} info={video.snippet} eInfo={video.extraInfo} image={video.snippet.thumbnails.default.url} channelInfo={video.channelInfo} />
+    <VideoCard
+      key={video.id.videoId}
+      id={video.id.videoId}
+      video={video}
+      info={video.snippet}
+      eInfo={video.extraInfo}
+      img={video.snippet.thumbnails.default.url}
+      channelInfo={video.channelInfo}
+    />
   ))
 
 
@@ -79,7 +98,9 @@ const VideoPage = () => {
       </div>
       <h1>{currentVideo.snippet.title}</h1>
       <div className='videoplayer_metadata'>
-        <span>{videoViews} visualisations</span>
+        <span>
+          {views} visualisations
+        </span>
         <span className='dot_separator'> &#8226; </span>
         <span>
           {moment(currentVideo.snippet.publishedAt).format('ll')}
@@ -122,16 +143,16 @@ const VideoPage = () => {
     )
   })
 
-  useEffect(() => {
-    setIsToggled(false)
-    getComments()
-  }, [])
+  // useEffect(() => {
+  //   // getComments()
+  // }, [])
 
-  useEffect(() => {
-    const video = relatedVideos.find(item =>
-      item.id.videoId === videoId
-    )
-    setCurrentVideo(video)
+  useEffect(async () => {
+    // const relVideos = await getRelatedVideos(videoId)
+    // setRelatedVideos(relVideos)
+    setIsToggled(false)
+    const comments = await getComments(videoId)
+    setVideoComments(comments)
   }, [videoId])
 
   return (
@@ -147,11 +168,15 @@ const VideoPage = () => {
               <div className='likes_container'>
                 <div className="likes">
                   <BiLike size={25} onClick={() => likeVideo(videoId)} />
-                  <span>{likes}</span>
+                  <span>
+                    {likes}
+                  </span>
                 </div>
                 <div className="dislikes">
                   <BiDislike size={25} />
-                  <span>{dislikes}</span>
+                  <span>
+                    {dislikes}
+                  </span>
                 </div>
               </div>
               <div className="share">
@@ -198,7 +223,7 @@ const VideoPage = () => {
               </div>
             </div>
             <div className='video_description'>
-              {formatText(currentVideo.snippet.description)}
+              {videoDescription}
             </div>
           </div>
           <div className="video_comments_container">

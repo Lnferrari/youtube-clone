@@ -11,6 +11,11 @@ const Index = () => {
   const location = useLocation()
   const { width } = useWindowSize()
 
+  useEffect(() => {
+    if (width >= 792) setIsToggled(true)
+    else setIsToggled(false)
+  }, [])
+
   return (
     <>
     {

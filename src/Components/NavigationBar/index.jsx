@@ -14,7 +14,6 @@ const Index = () => {
   const {
     searchQuery,
     setSearchQuery,
-    API_SEARCH,
     API_KEY,
     showSpecialSearchBar,
     setShowSpecialSearchBar,
@@ -37,11 +36,11 @@ const Index = () => {
     e.preventDefault()
     if(searchQuery.input !== ''){
       console.log('searching...');
-      const response = await axios(`${API_SEARCH}${searchQuery.input}&key=${API_KEY}`)
-      const result = await response.data
+      const response = await axios(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${searchQuery.input}&key=${API_KEY}`)
+      const videosApi = await response.data.items
       setSearchQuery({
           ...searchQuery,
-          videos: result.items
+          videos: videosApi
       });
       history.push(`/results/${searchQuery.input}`)
     }

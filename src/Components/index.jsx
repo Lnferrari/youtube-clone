@@ -15,11 +15,15 @@ const Index = () => {
         <SideBar />
         <Switch>
           <main>
-            <Route exact path='/' component={MainGallery} />
-            <Route exact path='/results/:searchedText'>
-              <SearchedVideos />
-            </Route>
-            <Route exact path='/video/:videoId' component={VideoPage} />
+            <Route exact path='/'
+              component={MainGallery}
+            />
+            <Route exact path='/results/:input'
+              component={SearchedVideos}
+            />
+            <Route exact path='/video/:videoId'
+              component={VideoPage}
+            />
             {/* <Route exact path='/channel/channelId' component={ChannelPage} /> */}
             {/* <Route exact path='/account' /> */}
           </main>

@@ -10,7 +10,6 @@ const SearchState = ({children}) => {
   const [ showSpecialSearchBar, setShowSpecialSearchBar ] = useState(false)
 
   const API_KEY = process.env.REACT_APP_API_KEY
-  const API_SEARCH = process.env.REACT_APP_API_SEARCH_URL
 
   const showSearchBar = () => {
     setShowSpecialSearchBar(true)
@@ -24,7 +23,6 @@ const SearchState = ({children}) => {
     <SearchContext.Provider value={{
       searchQuery,
       setSearchQuery,
-      API_SEARCH,
       API_KEY,
       showSpecialSearchBar,
       setShowSpecialSearchBar,

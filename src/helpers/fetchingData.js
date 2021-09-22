@@ -1,7 +1,8 @@
 import axios from "axios"
+
 const API_KEY = process.env.REACT_APP_API_KEY
 
-const getVideoInfo = async (videosArr) => {
+export const getVideoInfo = async (videosArr) => {
   try {
     for (let video of videosArr){
       // get extra video info
@@ -36,4 +37,20 @@ const getVideoInfo = async (videosArr) => {
   }
 }
 
-export default getVideoInfo
+export const getComments = async (videoId) => {
+  const response = await axios(
+    `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${videoId}&key=${API_KEY}`
+  )
+  const commentsApi = await response.data.items
+  return commentsApi
+}
+
+export const getRelatedVideos = async (videoId) => {
+  try {
+    const response = await axios(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&relatedToVideoId=${videoId}&type=video&key=${API_KEY}`)
+    const relatedVideosApi = await response.data.items
+    return relatedVideosApi
+  } catch (err) {
+    console.log(err)
+  }
+}
