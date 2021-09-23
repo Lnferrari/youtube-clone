@@ -13,11 +13,14 @@ const formatTimeVideo = str => {
       duration += time[i]
     }
   }
-  if(time.endsWith('M')){
-    return duration.slice(0, -1) + '00'
-  } else if(time.indexOf('H') !== -1 && time.indexOf('M') === -1 && time.endsWith('S')){
+
+  if (time.indexOf('H') !== -1 && time.indexOf('M') === -1 && time.endsWith('S')) {
     const [hour, min] = duration.slice(0, -1).split(':')
     return `${hour}:00:${min}`
+  } else if(time.endsWith('M')) {
+    return duration + '00'
+  } else if (duration.endsWith('::')) {
+    return duration.slice(0, -2)
   } else {
     return duration.slice(0, -1)
   }

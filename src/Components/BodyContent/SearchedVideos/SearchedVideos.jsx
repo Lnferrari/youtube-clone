@@ -24,9 +24,9 @@ const SearchedVideos = () => {
   )
 
   useEffect(async () => {
+    setIsToggled(true)
     const videos = await getVideoInfo(searchQuery.videos)
     setSearchedVideos(videos)
-    setIsToggled(true)
   }, [])
 
   return (
