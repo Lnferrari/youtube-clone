@@ -29,8 +29,8 @@ const VideoPage = ({ location }) => {
 
   // Variables
   const opts = {
-    height: '720',
-    width: '1280',
+    width: '640',
+    height: '390',
     playerVars: {
       autoplay: 1,
     },
@@ -56,7 +56,7 @@ const VideoPage = ({ location }) => {
       video={video}
       info={video.snippet}
       eInfo={video.extraInfo}
-      img={video.snippet.thumbnails.default.url}
+      img={video.snippet.thumbnails.medium.url}
       channelInfo={video.channelInfo}
     />
   ))
@@ -215,9 +215,9 @@ const VideoPage = ({ location }) => {
           </div>
         </div>
         <div className="column column_2">
-        <div className='related_list'>
-          { relatedVideosMarkUp }
-        </div>
+          <div className='related_list'>
+            { relatedVideosMarkUp }
+          </div>
         </div>
       </div>
     </section>

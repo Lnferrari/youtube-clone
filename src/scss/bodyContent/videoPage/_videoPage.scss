@@ -9,7 +9,7 @@
     // flex-flow: row wrap;
 
     .column {
-      margin: .5rem .5rem 0 0;
+      padding: .5rem 2.5rem 0 0;
       display: flex;
       flex-direction: column;
       align-items: center
@@ -17,16 +17,25 @@
 
     .column_1 {
       max-width: 1280px;
-      margin-right: 2rem;
       font-size: 14px;
       
       .youtube_player_container {
-        // max-width: 1280px;
-        // height: 100%;
+        width: 100%;
+        height: 100%;
+        
+        div {
+          height: 0;
+          padding-bottom: 56.25%; // ratio 16:9
+          position: relative;
 
-        .youtube_player {
-          max-width: 100%;
-          max-height: 720px;
+          .youtube_player {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            // height: 100%;
+          }
         }
       }
 
@@ -244,11 +253,12 @@
     }
 
     .column_2 {
-      flex-basis: 420px;        
+      flex-basis: 25%;        
 
         .videoCard {
           width: 100%;
           padding: 0 .5rem .5rem;
+          margin-bottom: .5rem;
           color: white;
           font-size: 14px;
           letter-spacing: .2px;
@@ -261,8 +271,8 @@
             display: flex;
       
             .video_preview {
-              width: 40%;
-              height: 100%;
+              width: 170px;
+              height: 90px;
               position: relative;
       
               img {
@@ -331,22 +341,34 @@
 }
 
 
-@media screen and (max-width: 1000px){
-  .columns_container {
-    flex-direction: column;
-    align-items: center;
-    color: green;
-
-    .column {
-      width: 100%;
-    }
-
-    .column_1 {
-      width: 100%;
-    }
-
-    .column_2 {
-      width: 100%;
+@media screen and (max-width: 1015px){
+  .videoPage {
+    .columns_container {
+      flex-direction: column;
+      align-items: center;
+  
+      .column {
+        width: 100%;
+        padding: .5rem 1.5rem;
+      }
+  
+      .column_2 {
+  
+        .related_list {
+          width: 100%;
+          margin-top: 1rem;
+  
+          .videoCard {
+            margin: 1.5rem 0;
+            padding: 0;
+  
+            .video_preview {
+              max-width: 170px;
+              max-height: 90px;
+            }
+          }
+        }
+      }
     }
   }
 }
