@@ -46,6 +46,28 @@
       a.active {
         background-color: $bg-color-hover;
       }
+
+      .channel_subscribed {
+        padding: 1rem 0;
+        padding-left: 2.4rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        img {
+          width: 25px;
+          border-radius: 50%;
+          margin-right: 2.4rem;
+        }
+
+        h4 {
+          font-weight: 400;
+        }
+
+        &:hover {
+          background-color: $bg-color-hover;
+        }
+      }
     }
 
     .footer {

@@ -32,7 +32,7 @@ const MainGallery = () => {
 
   useEffect(() => {
     getMainVideos();
-    if (width >= 792) setIsToggled(true)
+    setIsToggled(true)
   }, [])
 
   const mainGalleryVideos = mainVideos.map(video => (

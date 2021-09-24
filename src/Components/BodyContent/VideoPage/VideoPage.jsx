@@ -189,12 +189,13 @@ const VideoPage = ({ location }) => {
               <div className='channel_subscribe'>
                 <button
                   onClick={()=>subscribeToChannel(
-                    currentVideo.snippet.channelId
+                    currentVideo.channelInfo.title,
+                    currentVideo.channelInfo.thumbnails.default.url
                   )}
-                  className={`${user?.subscriptions?.some(channel => channel === currentVideo.snippet.channelId) ? 'subscribed' : ''}`}
+                  className={`${user?.subscriptions?.some(channel => channel.title === currentVideo.channelInfo.title) ? 'subscribed' : ''}`}
                 >
                   {
-                    user?.subscriptions?.some(channel => channel === currentVideo.snippet.channelId)
+                    user?.subscriptions?.some(channel => channel.title === currentVideo.channelInfo.title)
                     ? 'SUBSCRIBED'
                     : 'SUBSCRIBE'
                   }

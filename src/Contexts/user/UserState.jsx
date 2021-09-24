@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UserContext from './UserContext'
 
 const initialUserState = {
@@ -49,17 +49,22 @@ const UserState = ({children}) => {
     )
   }
 
-  const subscribeToChannel = channelId => {
+  // receives only name and image in order to render that info. In case of project expansion, the argument would be the channelID in order to get all the info of that channel.
+  const subscribeToChannel = (title, img) => {
+    const newChannel = {
+      title: title,
+      img: img
+    }
     let updatedSubscriptions = []
     const alreadySubscribed = user.subscriptions?.find(
-      channel => channel === channelId
+      channel => channel.title === title
     )
     if (alreadySubscribed) {
       updatedSubscriptions = user.subscriptions.filter(
-        channel => channel !== channelId
+        channel => channel.title !== title
       )
     } else {
-      updatedSubscriptions = user.subscriptions?.concat(channelId)
+      updatedSubscriptions = user.subscriptions?.concat(newChannel)
     }
     setUser({
       ...user,
