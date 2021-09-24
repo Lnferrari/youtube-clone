@@ -26,7 +26,7 @@ const Index = () => {
             <Route exact path='/video/:videoId'
               component={VideoPage}
             />
-            <Route exact path='/playlist?list=LL'
+            <Route exact path='/likedVideosList'
               component={LikedVideos}
             />
             <Route exact path='/playlist?list=WL'
