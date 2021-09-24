@@ -8,13 +8,21 @@ import useWindowSize from '../../helpers/useWindowSize'
 
 const Index = () => {
   const { isToggled, setIsToggled } = useContext(SideBarContext)
-  const location = useLocation()
   const { width } = useWindowSize()
+  const location = useLocation()
 
+  // useEffect(() => {
+  //   if (width >= 792) setIsToggled(true)
+  //   else setIsToggled(false)
+  // }, [])
+  
   useEffect(() => {
-    if (width >= 792) setIsToggled(true)
-    else setIsToggled(false)
-  }, [])
+    width <= 1320
+    ? setIsToggled(false)
+    : location.pathname.startsWith('/video')
+      ? setIsToggled(false)
+      : setIsToggled(true)
+  }, [width])
 
   return (
     <>

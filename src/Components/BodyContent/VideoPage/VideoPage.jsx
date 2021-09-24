@@ -16,31 +16,24 @@ import formatText from '../../../helpers/formatText'
 
 const VideoPage = ({ location }) => {
   const { videoId } = useParams()
-  console.log('VIDEO ID => ', videoId);
-
-  const { state: currentVideo } = location
-
-  console.log('LOCATION', location);
-  
   const [ videoComments, setVideoComments ] = useState([])
   const [relatedVideos, setRelatedVideos] = useState(JSON.parse(localStorage.getItem('mainVideos')) || [])
   const { setIsToggled } = useContext(SideBarContext)
-
   const { user,
     likeVideo,
     addToWatchLater,
     subscribeToChannel
   } = useContext(UserContext)
-
-  // const [currentVideo, setCurrentVideo ] = useState({})
-  //   // relatedVideos.find(item =>
-  //   //   item.id.videoId === videoId
-  //   // )
+  
+  const { state: currentVideo } = location
 
   // Variables
   const opts = {
     height: '720',
-    width: '1280'
+    width: '1280',
+    playerVars: {
+      autoplay: 1,
+    },
   }
 
   const API_KEY = process.env.REACT_APP_API_KEY
@@ -51,24 +44,6 @@ const VideoPage = ({ location }) => {
   const subscribers = formatViews(currentVideo.channelInfo.subscriberCount)
   const videoDescription = formatText(currentVideo.snippet.description)
   const comments = formatNumber(currentVideo.extraInfo.commentCount)
-
-  // const getRelatedVideos = async (videoId) => {
-  //   try {
-  //     const response = await axios(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&relatedToVideoId=${videoId}&type=video&key=${API_KEY}`)
-  //     const relatedVideosApi = await response.data.items
-  //     return relatedVideosApi
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
-
-  // const getComments = async (videoId) => {
-  //   const response = await axios(
-  //     `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${videoId}&key=${API_KEY}`
-  //   )
-  //   const commentsApi = await response.data.items
-  //   return commentsApi
-  // }
 
   const onPlayerReady = e => {
     e.target.playVideo();
@@ -143,9 +118,12 @@ const VideoPage = ({ location }) => {
     )
   })
 
-  // useEffect(() => {
-  //   // getComments()
-  // }, [])
+  useEffect(async () => {
+    // const relVideos = await getRelatedVideos(videoId)
+    // console.log('REL VIDEOS =>', relVideos);
+    // setRelatedVideos(relVideos)
+    setIsToggled(false)
+  }, [])
 
   useEffect(async () => {
     // const relVideos = await getRelatedVideos(videoId)
@@ -154,6 +132,7 @@ const VideoPage = ({ location }) => {
     const comments = await getComments(videoId)
     setVideoComments(comments)
   }, [videoId])
+
 
   return (
     <section className='videoPage'>

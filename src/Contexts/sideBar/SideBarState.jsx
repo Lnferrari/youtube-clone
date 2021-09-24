@@ -11,12 +11,6 @@ const SideBarState = ({children}) => {
     setIsToggled(!isToggled)
   }
 
-  useEffect(() => {
-    width <= 1320
-    ? setIsToggled(false)
-    : setIsToggled(true)
-  }, [width])
-
   return (
     <SideBarContext.Provider value={{isToggled, setIsToggled, handleToggleSideBar}}>
       {children}

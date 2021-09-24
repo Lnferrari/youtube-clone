@@ -329,3 +329,24 @@
     }
   }
 }
+
+
+@media screen and (max-width: 1000px){
+  .columns_container {
+    flex-direction: column;
+    align-items: center;
+    color: green;
+
+    .column {
+      width: 100%;
+    }
+
+    .column_1 {
+      width: 100%;
+    }
+
+    .column_2 {
+      width: 100%;
+    }
+  }
+}
