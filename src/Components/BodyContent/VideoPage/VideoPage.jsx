@@ -162,8 +162,10 @@ const VideoPage = ({ location }) => {
                 <Share size={25} />
                 <span>SHARE</span>
               </div>
-              <div className="save">
-                <Save size={25} onClick={() => addToWatchLater(currentVideo)}/>
+              <div className="save"
+                onClick={() => addToWatchLater(currentVideo)}
+              >
+                <Save size={25} />
                 <span>SAVE</span>
               </div>
               <div className="report">
