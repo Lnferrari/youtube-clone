@@ -13,17 +13,18 @@ const UserState = ({children}) => {
   )
   const [ user, setUser ] = useState(localUser || initialUserState)
 
-  const likeVideo = videoId => {
+  const likeVideo = newVideo => {
+    console.log('NEW VIDEO LIKED =>', newVideo);
     let updatedUserLikes = []
     const alreadyLiked = user.likedVideos?.find(
-      video => video === videoId
+      video => video.id.videoId === newVideo.id.videoId
     )
     if (alreadyLiked) {
       updatedUserLikes = user.likedVideos.filter(
-        video => video !== videoId
+        video => video.id.videoId !== newVideo.id.videoId
       )
     } else {
-      updatedUserLikes = user.likedVideos?.concat(videoId)
+      updatedUserLikes = user.likedVideos?.concat(newVideo)
     }
     setUser({
       ...user,
@@ -36,8 +37,8 @@ const UserState = ({children}) => {
     )
   }
 
-  const addToWatchLater = videoId => {
-    const updatedWatchLater = user.watchLater.concat(videoId)
+  const addToWatchLater = newVideo => {
+    const updatedWatchLater = user.watchLater.concat(newVideo)
     setUser({
       ...user,
       watchLater: updatedWatchLater

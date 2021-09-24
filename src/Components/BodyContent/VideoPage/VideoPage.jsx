@@ -66,7 +66,7 @@ const VideoPage = ({ location }) => {
     <div className='video_main_info'>
       <div className='tags'>
         {
-          currentVideo.snippet.tags.map((tag, i) => (
+          currentVideo?.snippet?.tags?.map((tag, i) => (
             <span className='tag' key={i}>#{tag}</span>
           ))
         }
@@ -146,7 +146,7 @@ const VideoPage = ({ location }) => {
             <div className="main_header_buttons">
               <div className='likes_container'>
                 <div className="likes">
-                  <BiLike size={25} onClick={() => likeVideo(videoId)} />
+                  <BiLike size={25} onClick={() => likeVideo(currentVideo)} />
                   <span>
                     {likes}
                   </span>
@@ -163,7 +163,7 @@ const VideoPage = ({ location }) => {
                 <span>SHARE</span>
               </div>
               <div className="save">
-                <Save size={25} onClick={() => addToWatchLater(videoId)}/>
+                <Save size={25} onClick={() => addToWatchLater(currentVideo)}/>
                 <span>SAVE</span>
               </div>
               <div className="report">
