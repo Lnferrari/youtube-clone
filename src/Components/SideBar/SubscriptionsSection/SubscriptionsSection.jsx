@@ -19,8 +19,12 @@ const SubscriptionsSection = () => {
       {
         user.subscriptions.length > 0
         ? subscriptionsMarkUp
-        : <h4 style={{ color: '#AAAAAA' }}>
-          Not subscribed to any channel
+        : <h4 style={{
+          color: '#AAAAAA',
+          padding: '1rem 0',
+          paddingLeft: '2.4rem'
+        }}>
+          No subscribed channels
         </h4>
       }
     </>

@@ -1,6 +1,12 @@
 #likedVideos {
   width: 100%;
   padding: 0 2rem;
+  
+  h3 {
+    color: white;
+    text-align: center;
+    font-size: 20px;
+  }
 
   .videoCard {
     max-width: 1000px;
