@@ -6,7 +6,7 @@ import MainGallery from './BodyContent/MainGallery/MainGallery';
 import VideoPage from './BodyContent/VideoPage/VideoPage';
 import SearchedVideos from './BodyContent/SearchedVideos/SearchedVideos'
 import LikedVideos from './BodyContent/LikedVideos/LikedVideos';
-import WatchLater from './SideBar/Watch later/WatchLater';
+import WatchLaterVideos from './BodyContent/WatchLaterVideos/WatchLaterVideos';
 
 const Index = () => {
   
@@ -29,8 +29,8 @@ const Index = () => {
             <Route exact path='/likedVideosList'
               component={LikedVideos}
             />
-            <Route exact path='/playlist?list=WL'
-              component={WatchLater}
+            <Route exact path='/watchLaterList'
+              component={WatchLaterVideos}
             />
             {/* <Route exact path='/channel/channelId' component={ChannelPage} /> */}
             {/* <Route exact path='/account' /> */}
