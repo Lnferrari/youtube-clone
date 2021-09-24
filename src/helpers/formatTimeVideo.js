@@ -22,7 +22,8 @@ const formatTimeVideo = str => {
   } else if (duration.endsWith('::')) {
     return duration.slice(0, -2)
   } else {
-    return duration.slice(0, -1)
+    const result = duration.replace('::', ":")
+    return result.slice(0, -1)
   }
 }
 

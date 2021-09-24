@@ -17,7 +17,7 @@ const MainGallery = () => {
   const getMainVideos = async () => {
     try {
       if(!storedVideos){
-        const response = await axios(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=techno&key=${API_KEY}`)
+        const response = await axios(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=hernan%20cattaneo&key=${API_KEY}`)
         let videosArray = await response.data.items
         videosArray = await getVideoInfo(videosArray)
         setMainVideos(videosArray)
