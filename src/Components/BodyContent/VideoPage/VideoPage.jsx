@@ -1,12 +1,12 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import YouTube from 'react-youtube'
-import { getComments, getRelatedVideos } from '../../../helpers/fetchingData'
 import faker from 'faker'
 import moment from 'moment'
+import YouTube from 'react-youtube'
+import { getComments } from '../../../helpers/fetchingData'
 import UserContext from '../../../Contexts/user/UserContext'
 import SideBarContext from '../../../Contexts/sideBar/SideBarContext'
-import VideoCard from '../VideoCard/VideoCard'
+import RelatedVideos from './RelatedVideos'
 import { RiFlagLine, RiShareForwardLine as Share } from 'react-icons/ri'
 import { BiLike, BiDislike } from 'react-icons/bi'
 import { MdPlaylistAdd as Save } from 'react-icons/md'
@@ -17,7 +17,6 @@ import formatText from '../../../helpers/formatText'
 const VideoPage = ({ location }) => {
   const { videoId } = useParams()
   const [ videoComments, setVideoComments ] = useState([])
-  const [relatedVideos, setRelatedVideos] = useState(JSON.parse(localStorage.getItem('mainVideos')) || [])
   const { setIsToggled } = useContext(SideBarContext)
   const { user,
     likeVideo,
@@ -36,8 +35,6 @@ const VideoPage = ({ location }) => {
     },
   }
 
-  const API_KEY = process.env.REACT_APP_API_KEY
-
   const views = formatNumber(currentVideo.extraInfo.viewCount)
   const likes = formatViews(currentVideo.extraInfo.likeCount)
   const dislikes = formatViews(currentVideo.extraInfo.dislikeCount)
@@ -48,19 +45,6 @@ const VideoPage = ({ location }) => {
   const onPlayerReady = e => {
     e.target.playVideo();
   }
-
-  const relatedVideosMarkUp = relatedVideos.map(video => (
-    <VideoCard
-      key={video.id.videoId}
-      id={video.id.videoId}
-      video={video}
-      info={video.snippet}
-      eInfo={video.extraInfo}
-      img={video.snippet.thumbnails.medium.url}
-      channelInfo={video.channelInfo}
-    />
-  ))
-
 
   const videoHeaderMarkUp = (
     <div className='video_main_info'>
@@ -119,15 +103,6 @@ const VideoPage = ({ location }) => {
   })
 
   useEffect(async () => {
-    // const relVideos = await getRelatedVideos(videoId)
-    // console.log('REL VIDEOS =>', relVideos);
-    // setRelatedVideos(relVideos)
-    setIsToggled(false)
-  }, [])
-
-  useEffect(async () => {
-    // const relVideos = await getRelatedVideos(videoId)
-    // setRelatedVideos(relVideos)
     setIsToggled(false)
     const comments = await getComments(videoId)
     setVideoComments(comments)
@@ -218,9 +193,7 @@ const VideoPage = ({ location }) => {
           </div>
         </div>
         <div className="column column_2">
-          <div className='related_list'>
-            { relatedVideosMarkUp }
-          </div>
+          <RelatedVideos currentVideo={videoId} />
         </div>
       </div>
     </section>
