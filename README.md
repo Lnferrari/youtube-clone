@@ -37,7 +37,7 @@
 ## About The Project
 
 <p>This project was built with the aim to challenge myself, to keep practicing and learning by doing.
-It contains the same basic functions as the original site, such as searching for videos, playing them or adding them to the "watch later" list.</p>
+It contains the same basic functions as the original site, such as searching for videos, playing them or adding them to the <i>WatchLater</i> list. It is also possible to like videos, adding them to the <i>LikedVideos</i> list, as well as to subscribe to channels.</p>
 
 ![YouTube clone Screen Shot][main page]
 
@@ -118,6 +118,8 @@ Contributions are what make the open source community such an amazing place to l
 * [React Tooltip](https://wwayne.github.io/react-tooltip/)
 * [React Icons](https://react-icons.github.io/react-icons/)
 * [Momentjs](https://momentjs.com/)
+* [React-Youtube](https://github.com/tjallingt/react-youtube)
+* [Faker](https://github.com/Marak/Faker.js)
 * [GitHub Pages](https://pages.github.com)
 
 
